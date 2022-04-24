@@ -1,0 +1,19 @@
+package com.example.testservice.repository;
+
+import com.example.testservice.entity.Test;
+import com.example.testservice.entity.Versions;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface TestRepository  extends JpaRepository<Test, String> {
+
+    List<Test> findByEcuName(String ecuName);
+
+
+
+
+    //Test findByecuName(String ecuName);
+}

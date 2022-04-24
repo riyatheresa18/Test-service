@@ -1,0 +1,18 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: TEST-SERVICE
+          uri: lb://TEST-SERVICE
+          predicates:
+            - Path=/test/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: TEST-SERVICE
+                fallbackuri: forward:/internalServiceFallBack
