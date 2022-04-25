@@ -36,9 +36,9 @@ public class TestService {
 
     public ResponseTemplate postTest(ResponseTemplate responseTemplate){
 
-      Test test = new Test();
-      List list1= new ArrayList();
-      list1= test.getVersions();
+      Test test = new Test(); //create new object
+      List list1= new ArrayList();//list for storing versions
+      list1= test.getVersions();//get versions and add versions to the list
       list1.add((responseTemplate.getVersions()));
       test.setVersions(list1);
       versionRepository.saveAll(list1);

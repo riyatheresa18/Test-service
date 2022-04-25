@@ -23,4 +23,6 @@ public class Versions {
     private Test test;
 
 
+    public Versions(String nest, String s, int i, int i1, int i2) {
+    }
 }

@@ -18,13 +18,13 @@ public class TestController {
     private TestService testService;
 
 
-    @GetMapping(value="/{ecuName}")
+    @GetMapping(value="/{ecuName}") //find by ecuName
     public List<Test> findbyecuName(String ecuName){
 
         return testService.findbyecuName(ecuName);
     }
 
-    @GetMapping(value="/view-all")
+    @GetMapping(value="/view-all")   //get all data
     public List<Test> getAllData(){
 
         return testService.getAllData();
@@ -36,7 +36,8 @@ public class TestController {
         return testService.getAllData();
     }*/
 
-    @PostMapping(value="/addTest")
+    @PostMapping(value="/addTest")  //Add data
+    
     public ResponseTemplate addTest(@RequestBody ResponseTemplate responseTemplate){
         return testService.postTest(responseTemplate);
 
