@@ -8,12 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TestRepository  extends JpaRepository<Test, String> {
+public interface TestRepository  extends JpaRepository<Test,Integer> {
 
-    List<Test> findByEcuName(String ecuName);
-
-
+    Test findByEcuName(String ecuName);
 
 
-    //Test findByecuName(String ecuName);
+
 }

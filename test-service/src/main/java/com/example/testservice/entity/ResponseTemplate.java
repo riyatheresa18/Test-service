@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ResponseTemplate {
 
-    private Test test;
-    private List<Versions> versions;
+    private TestRequest testRequest;
+    private List<Version> version;
+
 }

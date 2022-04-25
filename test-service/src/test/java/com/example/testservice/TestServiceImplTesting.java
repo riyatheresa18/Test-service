@@ -34,8 +34,8 @@ public class TestServiceImplTesting {
     @org.junit.Test
     void getTestchecking(){
 
-        Versions versions1=new Versions("NEST", "B3-10-02-2022",1,3,4);
-        Versions versions2=new Versions("NEST", "B3-10-02-2022",1,3,4);
+       // Versions versions1=new Versions("NEST", "B3-10-02-2022",1,3,4);
+       // Versions versions2=new Versions("NEST", "B3-10-02-2022",1,3,4);
 
         Versions versions3=new Versions();
        // versions3.setVersion((Arrays.asList(versions1,versions2)));when(versionRepository.getAll

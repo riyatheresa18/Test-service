@@ -2,7 +2,9 @@ package com.example.testservice.controller;
 
 
 import com.example.testservice.entity.ResponseTemplate;
+import com.example.testservice.entity.ResponseVO;
 import com.example.testservice.entity.Test;
+import com.example.testservice.entity.Versions;
 import com.example.testservice.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,15 +32,14 @@ public class TestController {
         return testService.getAllData();
     }
 
-    /*@GetMapping(value="/{ecuName}/{toolName}")
-    public List<Test> getAllToolName(String toolName){
+    @GetMapping(value="/findbytoolName/{ecuName}/{toolName}")
+    public List<Versions> getAllToolName(@PathVariable String ecuName, @PathVariable String toolName){
 
-        return testService.getAllData();
-    }*/
+        return testService.getAllToolName(ecuName, toolName);
+    }
 
     @PostMapping(value="/addTest")  //Add data
-    
-    public ResponseTemplate addTest(@RequestBody ResponseTemplate responseTemplate){
+    public ResponseVO addTest(@RequestBody ResponseTemplate responseTemplate){
         return testService.postTest(responseTemplate);
 
     }

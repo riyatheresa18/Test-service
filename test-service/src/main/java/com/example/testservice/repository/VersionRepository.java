@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface VersionRepository extends JpaRepository<Versions, String> {
+public interface VersionRepository extends JpaRepository<Versions, Integer> {
 
     //List<Versions> findAllToolName(String toolName);
 }
