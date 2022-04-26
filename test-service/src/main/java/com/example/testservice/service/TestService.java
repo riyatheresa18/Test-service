@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TestService {
@@ -18,9 +20,14 @@ public class TestService {
     @Autowired
     private VersionRepository versionRepository;
 
-    public Test findbyEcuName(String ecuName) {
+    public ResponseVO findbyEcuName(String ecuName) {
 
-        return testRepository.findByEcuName(ecuName);
+        Test test1=testRepository.findByEcuName(ecuName);
+        List<Versions> v1=versionRepository.findByTestId(test1.getTestId());
+        ResponseVO vo= new ResponseVO();
+        vo.setTest(test1);
+        vo.setVersions(v1);
+        return vo;
     }
 
     public List<Versions> getAllToolName(String ecuName ,String toolName) {
@@ -37,12 +44,19 @@ public class TestService {
     return v2;
     }
 
-    public List<Test> getAllData() {
-        return testRepository.findAll();
+    public Map<String, List<Versions>> getAllData() {
+
+       Map<String, List<Versions>> map1=new HashMap<>();
+       List<Test> l1=testRepository.findAll();
+       for(Test test:l1){
+           List<Versions> l2= versionRepository.findByTestId(test.getTestId());
+           map1.put(test.getEcuName(),l2);
+       }
+        return map1;
     }
 
     public ResponseVO postTest(ResponseTemplate responseTemplate){
-    List<Versions> list1= new ArrayList<>();
+    List<Versions> list1= new ArrayList<>(); //create list of versions
     Test test=new Test();
     test.setEcuName(responseTemplate.getTestRequest().getEcuName());
     ResponseVO vo=new ResponseVO();
@@ -60,5 +74,6 @@ public class TestService {
       vo.setVersions(list1);
       return vo;
     }
+
 
 }

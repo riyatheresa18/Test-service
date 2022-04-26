@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -21,13 +22,13 @@ public class TestController {
 
 
     @GetMapping(value="/{ecuName}") //find by ecuName
-    public List<Test> findbyecuName(String ecuName){
+    public ResponseVO findbyEcuName(String ecuName){
 
-        return testService.findbyecuName(ecuName);
+        return  testService.findbyEcuName(ecuName);
     }
 
     @GetMapping(value="/view-all")   //get all data
-    public List<Test> getAllData(){
+    public Map<String, List<Versions>> getAllData(){
 
         return testService.getAllData();
     }

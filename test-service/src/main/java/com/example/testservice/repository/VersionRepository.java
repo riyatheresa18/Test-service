@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface VersionRepository extends JpaRepository<Versions, Integer> {
 
+    List<Versions> findByTestId(int testId);
+
     //List<Versions> findAllToolName(String toolName);
 }
