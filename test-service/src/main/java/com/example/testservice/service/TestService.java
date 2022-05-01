@@ -1,6 +1,7 @@
 package com.example.testservice.service;
 
 import com.example.testservice.entity.*;
+import com.example.testservice.repository.ReportTableRepository;
 import com.example.testservice.repository.TestRepository;
 import com.example.testservice.repository.VersionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,13 @@ public class TestService {
     @Autowired
     private VersionRepository versionRepository;
 
+    @Autowired
+    private ReportTableRepository reportTableRepository;
+
     public ResponseVO findbyEcuName(String ecuName) {
 
-        Test test1=testRepository.findByEcuName(ecuName);
-        List<Versions> v1=versionRepository.findByTestId(test1.getTestId());
+        Test test1=testRepository.findByEcuName(ecuName);        // create object nd find by ecuname
+        List<Versions> v1=versionRepository.findByTestId(test1.getTestId()); //find versions by using test id
         ResponseVO vo= new ResponseVO();
         vo.setTest(test1);
         vo.setVersions(v1);
@@ -33,7 +37,7 @@ public class TestService {
     public List<Versions> getAllToolName(String ecuName ,String toolName) {
     List<Test> list2= new ArrayList<>();
 
-    Test t1= (Test) testRepository.findByEcuName(ecuName);
+    Test t1= (Test) testRepository.findByEcuName(ecuName); //traverse and find all toolname
     List<Versions> v2= new ArrayList<>();
     for(Versions v:versionRepository.findAll()){
         if(v.getToolName().equals(toolName) && v.getTestId()==t1.getTestId()){
@@ -44,7 +48,7 @@ public class TestService {
     return v2;
     }
 
-    public Map<String, List<Versions>> getAllData() {
+    public Map<String, List<Versions>> getAllData() {  //find all data by mapping class test and class versions
 
        Map<String, List<Versions>> map1=new HashMap<>();
        List<Test> l1=testRepository.findAll();
@@ -61,7 +65,7 @@ public class TestService {
     test.setEcuName(responseTemplate.getTestRequest().getEcuName());
     ResponseVO vo=new ResponseVO();
       vo.setTest(testRepository.save(test));
-      for( Version v: responseTemplate.getVersion()){
+      for( Version v: responseTemplate.getVersion()){  // using for loop set all values
           Versions versions=new Versions();
           versions.setToolName(v.getToolName());
           versions.setVersion(v.getVersion());
@@ -76,4 +80,7 @@ public class TestService {
     }
 
 
+    public ReportTable addToReportTable(ReportTable reportTable) { //add data to report table
+          return reportTableRepository.save(reportTable);
+    }
 }
