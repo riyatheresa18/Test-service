@@ -19,7 +19,7 @@ public class TestController {
 
 
     @GetMapping(value="/{ecuName}") //find by ecuName
-    public ResponseVO findbyEcuName(String ecuName){
+    public ResponseVO findbyEcuName(@PathVariable String ecuName){
 
         return  testService.findbyEcuName(ecuName);
     }
